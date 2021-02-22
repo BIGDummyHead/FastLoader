@@ -10,5 +10,5 @@ This is the injected code into the game, this code was manually put in by the de
 
 
 ## Used Libraries
-*[pardeike/Harmony](https://github.com/pardeike/Harmony) - [Harmony Docs](https://harmony.pardeike.net/)
-*[BIGDummyHead/DummyReflection](https://github.com/BIGDummyHead/DummyReflection)
+* [pardeike/Harmony](https://github.com/pardeike/Harmony) - [Harmony Docs](https://harmony.pardeike.net/)
+* [BIGDummyHead/DummyReflection](https://github.com/BIGDummyHead/DummyReflection)
