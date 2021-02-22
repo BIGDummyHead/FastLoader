@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastLoader", "FastLoader\FastLoader.csproj", "{E6EA335B-E729-4313-8DDA-A70DB7AE2EC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6EA335B-E729-4313-8DDA-A70DB7AE2EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6EA335B-E729-4313-8DDA-A70DB7AE2EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6EA335B-E729-4313-8DDA-A70DB7AE2EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6EA335B-E729-4313-8DDA-A70DB7AE2EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1F076A4-F7B7-4D4C-9122-DA6FA4DF12BD}
+	EndGlobalSection
+EndGlobal
