@@ -44,6 +44,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\SteamMain\steamapps\common\Fast and Low\FastandLow_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
+    <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SteamMain\steamapps\common\Fast and Low\FastandLow_Data\Managed\SteamVR.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamVR_Actions">
+      <HintPath>D:\SteamMain\steamapps\common\Fast and Low\FastandLow_Data\Managed\SteamVR_Actions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -92,15 +99,14 @@
     <Compile Include="Modding\Utilities\Events\ModEventArg.cs" />
     <Compile Include="Modding\Utilities\ModUtilities.cs" />
     <Compile Include="Modding\Utilities\Events\DamageEventArgs.cs" />
-    <Compile Include="Modding\Utilities\Reflection\IMethod.cs"/>
-    <Compile Include="Modding\Utilities\Reflection\IVariable.cs"/>
-    <Compile Include="Modding\Utilities\Reflection\Method.cs"/>
-    <Compile Include="Modding\Utilities\Reflection\Variable.cs"/>
-    <Compile Include="Modding\Utilities\Reflection\UtilityHandler.cs"/>
+    <Compile Include="Modding\Utilities\Reflection\IMethod.cs" />
+    <Compile Include="Modding\Utilities\Reflection\IVariable.cs" />
+    <Compile Include="Modding\Utilities\Reflection\Method.cs" />
+    <Compile Include="Modding\Utilities\Reflection\Variable.cs" />
+    <Compile Include="Modding\Utilities\Reflection\UtilityHandler.cs" />
+    <Compile Include="Modding\Utilities\VRInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modding\Utilities\Reflection\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

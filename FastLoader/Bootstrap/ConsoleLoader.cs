@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using UnityEngine;
 
 namespace FastandLow.Bootstrap
 {
@@ -83,8 +84,31 @@ namespace FastandLow.Bootstrap
                 Console.SetError(streamWriter);
                 Console.SetOut(streamWriter);
 
+                Application.logMessageReceived += LogMessage;
+
                 consoleOpen = true;
             }
+        }
+
+        private static void LogMessage(string log, string trace, LogType type)
+        {
+            switch (type)
+            {
+                case LogType.Error:
+                    Console.Write("ERROR [" + trace + "]: ");
+                    break;
+                case LogType.Assert:
+                    Console.Write("ASSERTION: ");
+                    break;
+                case LogType.Warning:
+                    Console.Write("WARNING: ");
+                    break;
+                case LogType.Exception:
+                    Console.Write("EXCEPTION [" + trace + "]: ");
+                    break;
+            }
+
+            Console.WriteLine(log + "\r\n");
         }
 
         /// <summary>

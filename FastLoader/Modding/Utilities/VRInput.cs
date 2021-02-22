@@ -109,7 +109,7 @@ namespace FastandLow.Modding.Utilities
 
             return returnValue;
         }
-
+        
         public static bool GetButtonUp(Input input)
         {
             bool returnValue = false;
