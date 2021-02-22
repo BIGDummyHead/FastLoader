@@ -4,7 +4,7 @@ FastLoader is the official API for Fast and Low, this is completly open source t
 
 ## Injected Code
 
-Assembly.LoadFrom(Path.Combine(Directory.GetCurrentDirectory(), "FastLoader.dll"))?.GetType("FastandLow.Bootstrap.Boot")?.GetMethod("StartMods", (BindingFlags)(-1))?.Invoke(null, new object[0]); 
+    Assembly.LoadFrom(Path.Combine(Directory.GetCurrentDirectory(), "FastLoader.dll"))?.GetType("FastandLow.Bootstrap.Boot")?.GetMethod("StartMods", (BindingFlags)(-1))?.Invoke(null, new object[0]); 
 
 This is the injected code into the game, this code was manually put in by the devloper, but you can inject your own code using my other library : [BIGDummyHead/DummyLib](https://github.com/BIGDummyHead/Dummy-Lib)
 
