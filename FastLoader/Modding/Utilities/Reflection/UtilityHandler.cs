@@ -3,8 +3,18 @@ using System.Reflection;
 
 namespace FastandLow.Modding.Utilities
 {
+    /// <summary>
+    /// Handles Extensions
+    /// </summary>
     public static class UtilityHandler
     {
+        /// <summary>
+        /// Returns a Method
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="methodName"></param>
+        /// <param name="types"></param>
+        /// <returns></returns>
         public static IMethod GetMethod(this object obj, string methodName, params Type[] types)
         {
             if (string.IsNullOrEmpty(methodName) || obj == null) return null;
@@ -27,6 +37,12 @@ namespace FastandLow.Modding.Utilities
             return methodReturn;
         }
 
+        /// <summary>
+        /// Returns a Field/Property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="objName"></param>
+        /// <returns></returns>
         public static IVariable GetVariable(this object obj, string objName)
         {
             Variable variable = new Variable();
@@ -69,6 +85,9 @@ namespace FastandLow.Modding.Utilities
             return obj.GetType().GetField(fieldName, AllFlags);
         }
 
+        /// <summary>
+        /// All BindingFlags => (<see cref="BindingFlags"/>)(-1)
+        /// </summary>
         public static BindingFlags AllFlags { get { return (BindingFlags)(-1); } }
 
 

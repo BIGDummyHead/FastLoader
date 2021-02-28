@@ -9,6 +9,9 @@ using Valve.Newtonsoft.Json;
 
 namespace FastandLow.Bootstrap
 {
+    /// <summary>
+    /// The class that controls all mods
+    /// </summary>
     public static class Boot
     {
         internal static Dictionary<string, Assembly> assembliesLoaded = new Dictionary<string, Assembly>();

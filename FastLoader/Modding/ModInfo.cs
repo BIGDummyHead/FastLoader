@@ -59,6 +59,7 @@ namespace FastandLow.Modding
         /// Compare to another ModInfo
         /// </summary>
         /// <param name="info"></param>
+        /// <param name="compareDir"></param>
         /// <returns></returns>
         public bool Compare(ModInfo info, bool compareDir = false)
         {

@@ -21,8 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\FastLoader.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -106,7 +105,6 @@
     <Compile Include="Modding\Utilities\Reflection\Method.cs" />
     <Compile Include="Modding\Utilities\Reflection\Variable.cs" />
     <Compile Include="Modding\Utilities\Reflection\UtilityHandler.cs" />
-    <Compile Include="Modding\Utilities\VoiceRecognition.cs" />
     <Compile Include="Modding\Utilities\VRInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

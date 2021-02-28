@@ -339,6 +339,9 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// Right when a civilian gets damaged
+        /// </summary>
         public static event EventHandler<DamageEventArgs<civilianHp>> OnCivilianDamaged;
 
         [HarmonyPatch(typeof(civilianHp), "TakeDamageMain", new Type[] { typeof(float) })]
@@ -349,7 +352,9 @@ namespace FastandLow.Modding.Utilities
                 OnCivilianDamaged?.Invoke(__instance.gameObject, new DamageEventArgs<civilianHp>(__instance, amount, __instance.alive));
             }
         }
-
+        /// <summary>
+        /// Right when an Enemy gets damaged
+        /// </summary>
         public static event EventHandler<DamageEventArgs<enemyHp>> OnEnemyDamaged;
 
         [HarmonyPatch(typeof(enemyHp), "TakeDamageMain", new Type[] { typeof(float) })]
@@ -361,7 +366,14 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// Right before an enemy spawns into the game
+        /// </summary>
         public static event EventHandler<ModEventArgs<basicAI>> BeforeEnemySpawn;
+
+        /// <summary>
+        /// Right after an enemy spawns into the game
+        /// </summary>
         public static event EventHandler<ModEventArgs<basicAI>> OnEnemySpawn;
 
 
@@ -378,7 +390,13 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// Right before a civilian spawns into the game
+        /// </summary>
         public static event EventHandler<ModEventArgs<civilianAI>> BeforeCivilianSpawn;
+        /// <summary>
+        /// Right after a civilian spawns into the game
+        /// </summary>
         public static event EventHandler<ModEventArgs<civilianAI>> OnCivilianSpawn;
 
 
@@ -395,6 +413,9 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// Right when a FPS Player Spawns
+        /// </summary>
         public static event EventHandler<ModEventArgs<fpsMovement>> OnFPSPlayerSpawn;
 
         [HarmonyPatch(typeof(fpsMovement), "Awake", new Type[0])]
@@ -406,6 +427,9 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// Right when a VR player is added to the game
+        /// </summary>
         public static event EventHandler<ModEventArgs<vrPlayerhealth>> OnVRPlayerSpawn;
 
         [HarmonyPatch(typeof(vrPlayerhealth), "Awake", new Type[0])]
@@ -417,6 +441,9 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// Right when a VR Player dies
+        /// </summary>
         public static event EventHandler<DamageEventArgs<vrPlayerhealth>> OnVRPlayerDie;
 
         [HarmonyPatch(typeof(vrPlayerhealth), "RPC_vrplayerDeath", new Type[] { typeof(int) })]
@@ -428,6 +455,10 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
+        /// <summary>
+        /// When a Desktop Player Dies
+        /// </summary>
+
         public static event EventHandler<DamageEventArgs<fpsMovement>> OnFpsPlayerDie;
 
         [HarmonyPatch(typeof(fpsMovement), "RPC_fpsplayerDeath", new Type[] { typeof(int) })]
@@ -438,6 +469,9 @@ namespace FastandLow.Modding.Utilities
                 OnFpsPlayerDie?.Invoke(__instance.gameObject, new DamageEventArgs<fpsMovement>(__instance, new object[] { actorID }));
             }
         }
+        /// <summary>
+        /// Right When a Desktop Player is damaged
+        /// </summary>
 
         public static event EventHandler<DamageEventArgs<fpsMovement>> OnFpsPlayerDamage;
 
@@ -459,7 +493,9 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
-
+        /// <summary>
+        /// Right when a VR player is damaged
+        /// </summary>
         public static event EventHandler<DamageEventArgs<vrPlayerhealth>> OnVRPlayerDamage;
 
         [HarmonyPatch(typeof(vrPlayerhealth), "takeDamage", new Type[0])]

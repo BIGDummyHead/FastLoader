@@ -5,15 +5,37 @@ using System.Reflection;
 
 namespace FastandLow.Modding.Utilities
 {
+    /// <summary>
+    /// A method
+    /// </summary>
     public class Method : IMethod
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object ReturnType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Type[] Parameters { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasReturnType { get { return this.ReturnType != null; } }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasParameters { get { return this.Parameters != null && this.Parameters.Length != 0; } }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="match"></param>
+        /// <returns></returns>
         public bool IsReturnType<T>(T match) where T : Type
         {
             bool res;
@@ -27,10 +49,19 @@ namespace FastandLow.Modding.Utilities
 
             return res;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public MethodBase MethodBase { private get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public object Instance { private get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="instance"></param>
         public void SetInfo(MethodInfo info, object instance)
         {
             this.Instance = instance;
@@ -52,6 +83,10 @@ namespace FastandLow.Modding.Utilities
             this.Parameters = param;
         }
 
+        /// <summary>
+        /// Invoke the method
+        /// </summary>
+        /// <param name="parameters"></param>
         public void CallMethod(params object[] parameters)
         {
             MethodBase.Invoke(this.Instance, parameters);
