@@ -96,10 +96,9 @@
     <Compile Include="Modding\Mod.cs" />
     <Compile Include="Modding\ModInfo.cs" />
     <Compile Include="Modding\Serialization\Settings.cs" />
-    <Compile Include="Modding\Utilities\Events\ModEventArgs.cs" />
+    <Compile Include="Modding\Events\ModEventHandlers.cs" />
     <Compile Include="Modding\Utilities\Logging.cs" />
     <Compile Include="Modding\Utilities\ModUtilities.cs" />
-    <Compile Include="Modding\Utilities\Events\DamageEventArgs.cs" />
     <Compile Include="Modding\Utilities\Reflection\IMethod.cs" />
     <Compile Include="Modding\Utilities\Reflection\IVariable.cs" />
     <Compile Include="Modding\Utilities\Reflection\Method.cs" />
