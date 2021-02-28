@@ -10,87 +10,89 @@ using static UnityEngine.Object;
 using FastandLow.Modding.Serialization;
 using static FastandLow.Modding.Utilities.ModUtilities;
 using System.IO;
+using FastandLow.Modding.Events;
 
 namespace SpeechMod
 {
     public class SpeechMod : Mod
     {
-        //vr or fps player
-        GameObject inuse = null;
+        GameObject characterInUse = null;
 
-        //special arrest lines
+        //arrest lines
         string[] ArrestLines;
 
         public override void Load(ModInfo info)
         {
             base.Load(info);
 
-            //commands to be used 
+            //commands to use
             Dictionary<string, Action> commands = new Dictionary<string, Action>();
 
-            //set arrest lines by using the settings.json file
+            //Load settings from settings.json
             ArrestLines = Settings.GetValue<string[]>(Path.Combine(info.Directory, "settings.json"));
 
-            //set each command to follow a different line but do the same action
+            //register each command, but have them use the same action
             foreach (string command in ArrestLines)
                 commands.Add(command, CallForArrest);
 
-            //listen for keywords with my set of commands
             SpeechRecognizer recog = new SpeechRecognizer(commands);
 
-            //manager
             MyManager manager = new GameObject("voiceManager").AddComponent<MyManager>();
             manager.reg = recog;
-            //stop manager from being destroyed
+
+            //never destroy the manager
             DontDestroyOnLoad(manager.gameObject);
-            //when the fps player spawns or vr player - set the inuse gameobject - make sure the vr player get priority
-            OnFPSPlayerSpawn += SpeechMod_OnFPSPlayerSpawn;
-            OnVRPlayerSpawn += VRPlayerActive;
+            //log when the player is spawned
+            OnFPSPlayerSpawn += FpsPlayerSpawned;
+            OnVRPlayerSpawn += VRPlayerSpawned;
         }
 
-        private void VRPlayerActive(object sender, FastandLow.Modding.Utilities.Events.ModEventArgs<vrPlayerhealth> e)
+        private void VRPlayerSpawned(GameObject sender, vrPlayerhealth instance)
         {
-            inuse = sender as GameObject;
-            //notify that the current object being used is the vr character
-            Console.WriteLine("Current Using VR For Voice");
+            //use this character for positioning
+            characterInUse = sender;
+            Console.WriteLine("Using VR Player For Voice");
         }
 
-        private void SpeechMod_OnFPSPlayerSpawn(object sender, FastandLow.Modding.Utilities.Events.ModEventArgs<fpsMovement> e)
+        private void FpsPlayerSpawned(GameObject sender, fpsMovement instance)
         {
-            inuse = sender as GameObject;
-            //notify that the current object being used is the fps character
-            Console.WriteLine("Currently Using Fps For Voice");
+            //use the desktop Player for positioning
+            characterInUse = sender;
+            Console.WriteLine("Using FPS Player For Voice");
         }
+
+
 
         public void CallForArrest()
         {
-            //check if the player is null
-            if (inuse != null)
+            //check if character has spawned?
+            if (characterInUse != null)
             {
-                //code from playerMovement
-                    Collider[] array = Physics.OverlapSphere(inuse.transform.position, 30f, 4096);
-                    foreach (Collider collider in array)
+                //code from fpsMovement
+                //                                                                               enemyMask
+                Collider[] array = Physics.OverlapSphere(characterInUse.transform.position, 30f, 4096);
+                foreach (Collider collider in array)
+                {
+                    if (collider.transform.root.CompareTag("enemy") || collider.transform.root.CompareTag("civilian"))
                     {
-                        if (collider.transform.root.CompareTag("enemy") || collider.transform.root.CompareTag("civilian"))
+                        if (collider.transform.root.GetComponent<basicAI>() != null)
                         {
-                            if (collider.transform.root.GetComponent<basicAI>() != null)
-                            {
-                                collider.transform.root.GetComponent<basicAI>().calledArrest(inuse);
-                            }
-                            if (collider.transform.root.GetComponent<civilianAI>() != null)
-                            {
-                                collider.transform.root.GetComponent<civilianAI>().calledArrest(inuse);
-                            }
+                            collider.transform.root.GetComponent<basicAI>().calledArrest(characterInUse);
+                        }
+                        if (collider.transform.root.GetComponent<civilianAI>() != null)
+                        {
+                            collider.transform.root.GetComponent<civilianAI>().calledArrest(characterInUse);
                         }
                     }
+                }
             }
             else
                 Console.WriteLine("Player Was Null");
         }
     }
 
-        
-    
+
+
 
     public class MyManager : MonoBehaviour
     {
@@ -116,18 +118,17 @@ namespace SpeechMod
             Recog.Start();
         }
 
-        //start listening for keywords
         public void StartListener()
         {
             Recog.Start();
         }
 
-        //stop listening for keywords
         public void StopListener() => Recog.Stop();
 
-        //invoke command
+
         private void Recog_OnPhraseRecognized(PhraseRecognizedEventArgs args)
         {
+            //invoke for keywords recognized, invoked CallForArrest - Line 66
             if (Commands.ContainsKey(args.text))
                 Commands[args.text].Invoke();
         }
