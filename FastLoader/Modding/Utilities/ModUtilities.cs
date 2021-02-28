@@ -520,5 +520,42 @@ namespace FastandLow.Modding.Utilities
 
         #endregion
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public class NameArgument : EventArgs
+        {
+            public NameArgument(string firstName, string lastName)
+            {
+
+            }
+        }
+
+
     }
 }

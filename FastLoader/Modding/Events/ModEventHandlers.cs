@@ -50,23 +50,23 @@ namespace FastandLow.Modding.Events
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sender"></param>
-        /// <param name="instance"></param>
-        public delegate void PlayerSpawnHandler<T>(GameObject sender, T instance);
+        /// <param name="player"></param>
+        public delegate void PlayerSpawnHandler<T>(GameObject sender, T player);
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sender"></param>
-        /// <param name="instance"></param>
-        public delegate void PlayerDeathHandler<T>(GameObject sender, T instance);
+        /// <param name="player"></param>
+        public delegate void PlayerDeathHandler<T>(GameObject sender, T player);
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sender"></param>
-        /// <param name="instance"></param>
+        /// <param name="player"></param>
         /// <param name="dmg"></param>
         /// <param name="livesRemaining"></param>
-        public delegate void PlayerDamageHandler<T>(GameObject sender, T instance, ref int dmg, ref int livesRemaining);
+        public delegate void PlayerDamageHandler<T>(GameObject sender, T player, ref int dmg, ref int livesRemaining);
     }
 }
