@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace DummyLoader.Utilities
+namespace FastandLow.Modding.Utilities
 {
     public class Variable : IVariable
     {

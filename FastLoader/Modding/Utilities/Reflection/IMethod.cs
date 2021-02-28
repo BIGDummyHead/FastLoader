@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace DummyLoader.Utilities
+namespace FastandLow.Modding.Utilities
 {
     public interface IMethod
     {

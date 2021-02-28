@@ -96,7 +96,9 @@
     <Compile Include="Bootstrap\ConsoleLoader.cs" />
     <Compile Include="Modding\Mod.cs" />
     <Compile Include="Modding\ModInfo.cs" />
-    <Compile Include="Modding\Utilities\Events\ModEventArg.cs" />
+    <Compile Include="Modding\Serialization\Settings.cs" />
+    <Compile Include="Modding\Utilities\Events\ModEventArgs.cs" />
+    <Compile Include="Modding\Utilities\Logging.cs" />
     <Compile Include="Modding\Utilities\ModUtilities.cs" />
     <Compile Include="Modding\Utilities\Events\DamageEventArgs.cs" />
     <Compile Include="Modding\Utilities\Reflection\IMethod.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Modding\Utilities\Reflection\Method.cs" />
     <Compile Include="Modding\Utilities\Reflection\Variable.cs" />
     <Compile Include="Modding\Utilities\Reflection\UtilityHandler.cs" />
+    <Compile Include="Modding\Utilities\VoiceRecognition.cs" />
     <Compile Include="Modding\Utilities\VRInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

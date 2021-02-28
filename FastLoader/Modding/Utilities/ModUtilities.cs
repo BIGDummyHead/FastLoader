@@ -194,7 +194,7 @@ namespace FastandLow.Modding.Utilities
 
             GetBundle(name, delegate (AssetBundle bundle)
             {
-              T obj =  bundle.LoadAsset<T>(bundle.GetAllAssetNames()[0]);
+                T obj = bundle.LoadAsset<T>(bundle.GetAllAssetNames()[0]);
 
                 if (!instantiate)
                     ran = obj;
@@ -289,7 +289,6 @@ namespace FastandLow.Modding.Utilities
         /// </summary>
         public static bool LocalActivated => audioManager.instance.bothplayersActive;
         #endregion
-
         #region Events
         /// <summary>
         /// Invoked right before an Enemy Dies
@@ -362,8 +361,8 @@ namespace FastandLow.Modding.Utilities
             }
         }
 
-        public static event EventHandler<ModEventArg<basicAI>> BeforeEnemySpawn;
-        public static event EventHandler<ModEventArg<basicAI>> OnEnemySpawn;
+        public static event EventHandler<ModEventArgs<basicAI>> BeforeEnemySpawn;
+        public static event EventHandler<ModEventArgs<basicAI>> OnEnemySpawn;
 
 
         [HarmonyPatch(typeof(basicAI), "Awake", new Type[0])]
@@ -371,16 +370,16 @@ namespace FastandLow.Modding.Utilities
         {
             public static void Prefix(basicAI __instance)
             {
-                BeforeEnemySpawn?.Invoke(__instance.NPC.gameObject, new ModEventArg<basicAI>(__instance));
+                BeforeEnemySpawn?.Invoke(__instance.NPC.gameObject, new ModEventArgs<basicAI>(__instance));
             }
             public static void Postfix(ref basicAI __instance)
             {
-                OnEnemySpawn?.Invoke(__instance.NPC.gameObject, new ModEventArg<basicAI>(__instance));
+                OnEnemySpawn?.Invoke(__instance.NPC.gameObject, new ModEventArgs<basicAI>(__instance));
             }
         }
 
-        public static event EventHandler<ModEventArg<civilianAI>> BeforeCivilianSpawn;
-        public static event EventHandler<ModEventArg<civilianAI>> OnCivilianSpawn;
+        public static event EventHandler<ModEventArgs<civilianAI>> BeforeCivilianSpawn;
+        public static event EventHandler<ModEventArgs<civilianAI>> OnCivilianSpawn;
 
 
         [HarmonyPatch(typeof(civilianAI), "Awake", new Type[0])]
@@ -388,13 +387,100 @@ namespace FastandLow.Modding.Utilities
         {
             public static void Prefix(civilianAI __instance)
             {
-                BeforeCivilianSpawn?.Invoke(__instance.NPC.gameObject, new ModEventArg<civilianAI>(__instance));
+                BeforeCivilianSpawn?.Invoke(__instance.NPC.gameObject, new ModEventArgs<civilianAI>(__instance));
             }
             public static void Postfix(ref civilianAI __instance)
             {
-                OnCivilianSpawn?.Invoke(__instance.NPC.gameObject, new ModEventArg<civilianAI>(__instance));
+                OnCivilianSpawn?.Invoke(__instance.NPC.gameObject, new ModEventArgs<civilianAI>(__instance));
             }
         }
+
+        public static event EventHandler<ModEventArgs<fpsMovement>> OnFPSPlayerSpawn;
+
+        [HarmonyPatch(typeof(fpsMovement), "Awake", new Type[0])]
+        internal static class OnFPSPlayerSpawnEvent
+        {
+            public static void Prefix(fpsMovement __instance)
+            {
+                OnFPSPlayerSpawn?.Invoke(__instance.gameObject, new ModEventArgs<fpsMovement>(__instance));
+            }
+        }
+
+        public static event EventHandler<ModEventArgs<vrPlayerhealth>> OnVRPlayerSpawn;
+
+        [HarmonyPatch(typeof(vrPlayerhealth), "Awake", new Type[0])]
+        internal static class OnVrPlayerSpawnEvent
+        {
+            public static void Prefix(vrPlayerhealth __instance)
+            {
+                OnVRPlayerSpawn?.Invoke(__instance.gameObject, new ModEventArgs<vrPlayerhealth>(__instance));
+            }
+        }
+
+        public static event EventHandler<DamageEventArgs<vrPlayerhealth>> OnVRPlayerDie;
+
+        [HarmonyPatch(typeof(vrPlayerhealth), "RPC_vrplayerDeath", new Type[] { typeof(int) })]
+        internal static class OnVrPlayerDiePatch
+        {
+            public static void Prefix(vrPlayerhealth __instance, int actorID)
+            {
+                OnVRPlayerDie?.Invoke(__instance.gameObject, new DamageEventArgs<vrPlayerhealth>(__instance, new object[] { actorID }));
+            }
+        }
+
+        public static event EventHandler<DamageEventArgs<fpsMovement>> OnFpsPlayerDie;
+
+        [HarmonyPatch(typeof(fpsMovement), "RPC_fpsplayerDeath", new Type[] { typeof(int) })]
+        internal static class OnFpsPlayerDiePatch
+        {
+            public static void Prefix(fpsMovement __instance, int actorID)
+            {
+                OnFpsPlayerDie?.Invoke(__instance.gameObject, new DamageEventArgs<fpsMovement>(__instance, new object[] { actorID }));
+            }
+        }
+
+        public static event EventHandler<DamageEventArgs<fpsMovement>> OnFpsPlayerDamage;
+
+        [HarmonyPatch(typeof(fpsMovement), "RPC_fpsHit", new Type[0])]
+        internal static class OnFpsPlayerDmgPatch
+        {
+            public static void Prefix(fpsMovement __instance)
+            {
+                OnFpsPlayerDamage?.Invoke(__instance.gameObject, new DamageEventArgs<fpsMovement>(__instance, new object[] { __instance.livesRem }, 1, __instance.livesRem > 0));
+            }
+        }
+
+        [HarmonyPatch(typeof(fpsMovement), "takeExplosiondamage", new Type[] { typeof(int) })]
+        internal static class OnFpsPlayerDmgPatch_Explosive
+        {
+            public static void Prefix(fpsMovement __instance, int amount)
+            {
+                OnFpsPlayerDamage?.Invoke(__instance.gameObject, new DamageEventArgs<fpsMovement>(__instance, new object[] { __instance.livesRem }, amount, __instance.livesRem > 0));
+            }
+        }
+
+
+        public static event EventHandler<DamageEventArgs<vrPlayerhealth>> OnVRPlayerDamage;
+
+        [HarmonyPatch(typeof(vrPlayerhealth), "takeDamage", new Type[0])]
+        internal static class OnVRPlayerDmgPatch
+        {
+            public static void Prefix(vrPlayerhealth __instance)
+            {
+                OnVRPlayerDamage?.Invoke(__instance.gameObject, new DamageEventArgs<vrPlayerhealth>(__instance, new object[] { __instance.livesRem }, 1, __instance.livesRem > 0));
+            }
+        }
+
+        [HarmonyPatch(typeof(vrPlayerhealth), "takeExplosiondamage", new Type[] { typeof(int) })]
+        internal static class OnVRPlayerDmgPatch_Explosive
+        {
+            public static void Prefix(vrPlayerhealth __instance, int amount)
+            {
+                OnVRPlayerDamage?.Invoke(__instance.gameObject, new DamageEventArgs<vrPlayerhealth>(__instance, new object[] { __instance.livesRem }, amount, __instance.livesRem > 0));
+            }
+        }
+
         #endregion
+
     }
 }

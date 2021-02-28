@@ -7,9 +7,15 @@ using Photon.Pun;
 
 namespace FastandLow.Modding.Utilities.Events
 {
-    public sealed class DamageEventArgs<T> : ModEventArg<T> where T : MonoBehaviourPunCallbacks
+    public sealed class DamageEventArgs<T> : ModEventArgs<T> where T : MonoBehaviourPunCallbacks
     {
         public DamageEventArgs(T instance, float dmg = 0, bool alive = false) : base(instance)
+        {
+            Damage = dmg;
+            Alive = alive;
+        }
+
+        public DamageEventArgs(T instance, object[] args, float dmg = 0, bool alive = false) : base(instance, args)
         {
             Damage = dmg;
             Alive = alive;

@@ -10,7 +10,7 @@ namespace FastandLow.Modding
     /// <summary>
     /// Info supplied to a mod
     /// </summary>
-    public sealed class ModInfo
+    public struct ModInfo
     {
         /// <summary>
         /// Name of the Mod
@@ -42,7 +42,7 @@ namespace FastandLow.Modding
         /// <summary>
         /// Directory of the Mod Executing
         /// </summary>
-        public string Directory => Assembly.GetExecutingAssembly().Location;
+        public string Directory { get; set; }
 
         /// <summary>
         /// Should the Mod Load?
@@ -55,5 +55,17 @@ namespace FastandLow.Modding
         /// </summary>
         public static ModInfo None => new ModInfo() { Author = "?", Load = true, Description = "?", Name = "?", Version = "?" };
 
+        /// <summary>
+        /// Compare to another ModInfo
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public bool Compare(ModInfo info, bool compareDir = false)
+        {
+            if (!compareDir)
+                return this.Author == info.Author && this.Description == info.Description && this.Name == info.Name && this.Version == info.Version;
+
+            return this.Author == info.Author && this.Description == info.Description && this.Name == info.Name && this.Version == info.Version && this.Directory == info.Directory;
+        }
     }
 }
