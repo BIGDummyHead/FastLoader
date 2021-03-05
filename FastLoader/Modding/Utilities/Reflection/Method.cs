@@ -8,26 +8,26 @@ namespace FastandLow.Modding.Utilities
     /// <summary>
     /// A method
     /// </summary>
-    public class Method : IMethod
+    public class Method 
     {
         /// <summary>
-        /// 
+        /// The name of the method
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 
+        /// The return type
         /// </summary>
         public object ReturnType { get; set; }
         /// <summary>
-        /// 
+        /// Param Types
         /// </summary>
         public Type[] Parameters { get; set; }
         /// <summary>
-        /// 
+        /// Does this have return types?
         /// </summary>
         public bool HasReturnType { get { return this.ReturnType != null; } }
         /// <summary>
-        /// 
+        /// Does this have parameters
         /// </summary>
         public bool HasParameters { get { return this.Parameters != null && this.Parameters.Length != 0; } }
         /// <summary>
@@ -50,11 +50,11 @@ namespace FastandLow.Modding.Utilities
             return res;
         }
         /// <summary>
-        /// 
+        /// The methodbase
         /// </summary>
         public MethodBase MethodBase { private get; set; }
         /// <summary>
-        /// 
+        /// an Instance
         /// </summary>
         public object Instance { private get; set; }
         /// <summary>
@@ -77,7 +77,6 @@ namespace FastandLow.Modding.Utilities
             {
                 IEnumerable<Type> enumerable = from p in infoP select p.ParameterType;
                 param = enumerable?.ToArray<Type>();
-
             }
 
             this.Parameters = param;

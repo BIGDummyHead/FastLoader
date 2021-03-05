@@ -5,7 +5,7 @@ namespace FastandLow.Modding.Utilities
     /// <summary>
     /// 
     /// </summary>
-    public class Variable : IVariable
+    public class Variable
     {
         /// <summary>
         /// 

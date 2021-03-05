@@ -15,7 +15,7 @@ namespace FastandLow.Modding.Utilities
         /// <param name="methodName"></param>
         /// <param name="types"></param>
         /// <returns></returns>
-        public static IMethod GetMethod(this object obj, string methodName, params Type[] types)
+        public static Method GetMethod(this object obj, string methodName, params Type[] types)
         {
             if (string.IsNullOrEmpty(methodName) || obj == null) return null;
 
@@ -43,7 +43,7 @@ namespace FastandLow.Modding.Utilities
         /// <param name="obj"></param>
         /// <param name="objName"></param>
         /// <returns></returns>
-        public static IVariable GetVariable(this object obj, string objName)
+        public static Variable GetVariable(this object obj, string objName)
         {
             Variable variable = new Variable();
 
