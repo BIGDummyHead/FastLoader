@@ -85,7 +85,6 @@ namespace FastandLow.Bootstrap
                 Console.SetOut(streamWriter);
 
                 Application.logMessageReceived += LogMessage;
-
                 consoleOpen = true;
             }
         }

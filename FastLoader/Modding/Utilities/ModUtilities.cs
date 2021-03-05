@@ -520,42 +520,37 @@ namespace FastandLow.Modding.Utilities
 
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public class NameArgument : EventArgs
+        /// <summary>
+        /// Call For An Arrest of Enemies/Civilians
+        /// </summary>
+        /// <param name="caller">Where to call from</param>
+        /// <param name="range">The range for how long the arrest is called, 30 being the base</param>
+        public static void CallForArrest(Transform caller, float range = 30f)
         {
-            public NameArgument(string firstName, string lastName)
+            Collider[] array = Physics.OverlapSphere(caller.position, range, 4096);
+            foreach (Collider collider in array)
             {
-
+                if (collider.transform.root.CompareTag("enemy") || collider.transform.root.CompareTag("civilian"))
+                {
+                    if (collider.transform.root.GetComponent<basicAI>() != null)
+                    {
+                        collider.transform.root.GetComponent<basicAI>().calledArrest(caller.gameObject);
+                    }
+                    if (collider.transform.root.GetComponent<civilianAI>() != null)
+                    {
+                        collider.transform.root.GetComponent<civilianAI>().calledArrest(caller.gameObject);
+                    }
+                }
             }
         }
 
-
+        /// <summary>
+        /// Kills the selected Civilians
+        /// </summary>
+        /// <param name="civilian">The civilian to kill</param>
+        public static void Kill(civilianHp civilian)
+        {
+            civilian.GetMethod("Die").CallMethod();
+        }
     }
 }
