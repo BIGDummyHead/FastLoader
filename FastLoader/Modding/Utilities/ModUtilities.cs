@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.Networking;
 using HarmonyLib;
 using static FastandLow.Modding.Events.ModEventHandlers;
@@ -17,6 +14,11 @@ namespace FastandLow.Modding.Utilities
     /// </summary>
     public static class ModUtilities
     {
+        /// <summary>
+        /// Reloads All Mods For Your Game!
+        /// </summary>
+        public static void ReloadMods() => Bootstrap.Boot.ReloadMods();
+
         internal static void _patchGame()
         {
             new Harmony("com.FastandLow.Modding").PatchAll();

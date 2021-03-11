@@ -49,7 +49,7 @@ namespace FastandLow.Bootstrap
             NotifyUser(loader.LoadMods());
         }
 
-
+        internal static void ReloadMods() => loader.ReloadMods();
 
         private static void NotifyUser(int number)
         {

@@ -19,6 +19,12 @@ namespace FastandLow.Bootstrap
             public string DllFile { get; set; } //the AssemblyFile to load
         }
 
+        internal struct LoadedMod
+        {
+            public Mod LoadedType { get; set; }
+            public ModInfo Info { get; set; }
+        }
+
 
         internal string ModsFolder { get; } //the mods folder
 
@@ -28,6 +34,7 @@ namespace FastandLow.Bootstrap
         }
 
         internal Dictionary<string, Assembly> AssembliesLoaded { get; } = new Dictionary<string, Assembly>();
+        internal List<LoadedMod> ModsLoaded { get; } = new List<LoadedMod>();
 
         internal IEnumerable<Data> Mods
         {
@@ -53,9 +60,19 @@ namespace FastandLow.Bootstrap
                     }
                 }
             }
-           
+
         }
 
+        internal void ReloadMods()
+        {
+            foreach (LoadedMod loaded in ModsLoaded)
+            {
+                Mod mod = loaded.LoadedType;
+
+                mod.UnLoad();
+                mod.Load(loaded.Info);
+            }
+        }
 
         internal int LoadMods()
         {
@@ -83,7 +100,22 @@ namespace FastandLow.Bootstrap
                         if (info.Load)
                         {
                             Console.WriteLine($"{info.Name} Is Now Loading!");
-                            customMod.Load(info);
+
+                            LoadedMod loadedM = new LoadedMod
+                            {
+                                LoadedType = customMod,
+                                Info = info
+                            };
+
+                            if (!ModsLoaded.Contains(loadedM))
+                                customMod.Load(info);
+                            else
+                                Console.WriteLine("Mod Has Already Been Initialized");
+
+
+
+                            ModsLoaded.Add(loadedM);
+
                             modsLoaded++;
                         }
                         else
@@ -110,8 +142,8 @@ namespace FastandLow.Bootstrap
             {
                 _ret = JsonConvert.DeserializeObject<ModInfo>(File.ReadAllText(modFile));
             }
-            catch{}
-            
+            catch { }
+
 
             return _ret;
         }
