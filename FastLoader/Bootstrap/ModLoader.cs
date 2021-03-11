@@ -108,15 +108,15 @@ namespace FastandLow.Bootstrap
                             };
 
                             if (!ModsLoaded.Contains(loadedM))
+                            {
                                 customMod.Load(info);
+                                ModsLoaded.Add(loadedM);
+                                modsLoaded++;
+                            }
                             else
                                 Console.WriteLine("Mod Has Already Been Initialized");
 
 
-
-                            ModsLoaded.Add(loadedM);
-
-                            modsLoaded++;
                         }
                         else
                         {
