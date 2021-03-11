@@ -1,0 +1,693 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FastLoader</name>
+    </assembly>
+    <members>
+        <member name="T:FastandLow.Bootstrap.Boot">
+            <summary>
+            The class that controls all mods
+            </summary>
+        </member>
+        <member name="P:FastandLow.Bootstrap.Boot.LoadedMods">
+            <summary>
+            Have the mods been loaded?
+            </summary>
+        </member>
+        <member name="P:FastandLow.Bootstrap.Boot.ModsFolder">
+            <summary>
+            The Mods Folder
+            <see cref="M:System.IO.Path.Combine(System.String,System.String)"/> -- <seealso cref="M:System.IO.Directory.GetCurrentDirectory"/>
+            </summary>
+        </member>
+        <member name="T:FastandLow.Bootstrap.ConsoleLoader">
+            <summary>
+            <see cref="T:System.Console"/> Controller
+            </summary>
+        </member>
+        <member name="T:FastandLow.Bootstrap.ConsoleLoader.Info">
+            <summary>
+            Info on the User's Console
+            </summary>
+        </member>
+        <member name="P:FastandLow.Bootstrap.ConsoleLoader.Info.OpenConsole">
+            <summary>
+            should the console open?
+            </summary>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.AllocConsole">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.GetConsoleWindow">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.ShowWindow(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="win"></param>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.FreeConsole">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.ShowConsole">
+            <summary>
+            Show the console only if it is active!
+            </summary>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.OpenConsole">
+            <summary>
+            Open the Console!
+            </summary>
+        </member>
+        <member name="M:FastandLow.Bootstrap.ConsoleLoader.CloseConsole">
+            <summary>
+            Close the console completely
+            </summary>
+        </member>
+        <member name="T:FastandLow.Modding.Mod">
+            <summary>
+            An Abstract class with virtual methods to be accessed by the Bootstrap
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Mod.Load(FastandLow.Modding.ModInfo)">
+            <summary>
+            Load a Mod with Info on said mod - <see cref="T:FastandLow.Modding.ModInfo"/> <paramref name="info"/> is never null even when there is no Mod.mod File Included
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Mod.UnLoad">
+            <summary>
+            Unloads the mod
+            </summary>
+        </member>
+        <member name="T:FastandLow.Modding.ModInfo">
+            <summary>
+            Info supplied to a mod
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.Name">
+            <summary>
+            Name of the Mod
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.Author">
+            <summary>
+            Name of the Author
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.Description">
+            <summary>
+            Description of the Mod
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.Version">
+            <summary>
+            Version of the Mod
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.Directory">
+            <summary>
+            Directory of the Mod Executing
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.Load">
+            <summary>
+            Should the Mod Load?
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.ModInfo.None">
+            <summary>
+            No information was supplied, all values are set to "?" and <see cref="P:FastandLow.Modding.ModInfo.Load"/> is set to True
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.ModInfo.Compare(FastandLow.Modding.ModInfo,System.Boolean)">
+            <summary>
+            Compare to another ModInfo
+            </summary>
+            <param name="info"></param>
+            <param name="compareDir"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FastandLow.Modding.Serialization.Settings">
+            <summary>
+            Settings 
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Serialization.Settings.GetValue``1(System.String)">
+            <summary>
+            Get a Value from a Json type file
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="settingsFile">The Settings File</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Serialization.Settings.Write(System.String,System.Object)">
+            <summary>
+            Write an Object as Json to a <paramref name="file"/>
+            </summary>
+            <param name="file">The Json File</param>
+            <param name="item"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers">
+            <summary>
+            Handles all Modded Events
+            </summary>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.EnemyDamageHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="hp"></param>
+            <param name="damage"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.EnemyDeathHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="ai"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.EnemySpawnHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="ai"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.CivilianDeathHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="hp"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.CivilianDamageHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="hp"></param>
+            <param name="amount"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.CivilianSpawnHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="ai"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.PlayerSpawnHandler`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sender"></param>
+            <param name="player"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.PlayerDeathHandler`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sender"></param>
+            <param name="player"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Events.ModEventHandlers.PlayerDamageHandler`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sender"></param>
+            <param name="player"></param>
+            <param name="dmg"></param>
+            <param name="livesRemaining"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.Logging">
+            <summary>
+            Log to the <see cref="T:UnityEngine.Debug"/>
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Logging.Log(System.Object)">
+            <summary>
+            <see cref="M:UnityEngine.Debug.Log(System.Object)"/>
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Logging.LogWarning(System.Object)">
+            <summary>
+            <see cref="M:UnityEngine.Debug.LogWarning(System.Object)"/>
+            </summary>
+            <param name="warning"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Logging.LogError(System.Object)">
+            <summary>
+            <see cref="M:UnityEngine.Debug.LogError(System.Object)"/>
+            </summary>
+            <param name="error"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.ModUtilities">
+            <summary>
+            Utilities to help you make a mod!
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.ReloadMods">
+            <summary>
+            Reloads All Mods For Your Game!
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.RegisterAudio(System.String,System.String,System.String)">
+            <summary>
+            Register an Audio Clip for later
+            </summary>
+            <param name="fileName"></param>
+            <param name="fileBaseDir">Base Directory</param>
+            <param name="customName">A Custom Name To Accessed Under</param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetAudio(System.String)">
+            <summary>
+            Get a Registered Audio Clip -> <see cref="M:FastandLow.Modding.Utilities.ModUtilities.RegisterAudio(System.String,System.String,System.String)"/>
+            </summary>
+            <param name="registeredName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetAudio(System.String,System.Action{UnityEngine.AudioClip})">
+            <summary>
+            Get Audio From Your Registered Audio and Delegate an Action when it is loaded
+            </summary>
+            <param name="name"></param>
+            <param name="onLoad"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetAudioType(System.String)">
+            <summary>
+            Pass in a File path and this will determine an <see cref="T:UnityEngine.AudioType"/>
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.RegisterBundle(System.String,System.String,System.String)">
+            <summary>
+            Register a Bundle 
+            </summary>
+            <param name="fileName"></param>
+            <param name="fileBaseDir">Base Directory</param>
+            <param name="customName">A Custom Name To Accessed Under</param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetBundle(System.String)">
+            <summary>
+            Get The <see cref="M:FastandLow.Modding.Utilities.ModUtilities.RegisterBundle(System.String,System.String,System.String)"/> as an <seealso cref="T:UnityEngine.AssetBundle"/>
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetBundle(System.String,System.Action{UnityEngine.AssetBundle})">
+            <summary>
+            Get a Bundle and pass in an action to be used On Load
+            </summary>
+            <param name="name"></param>
+            <param name="onLoad"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetBundle``1(System.String,System.Boolean)">
+            <summary>
+            Get a Bundle
+            </summary>
+            <typeparam name="T">A <see cref="T:UnityEngine.Object"/></typeparam>
+            <param name="name">The Name Of The Registered Bundle</param>
+            <param name="instantiate">Instantiate The Bundle On Load - False Normally</param>
+            <returns><typeparamref name="T"/></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetBundle(System.String,System.Boolean)">
+            <summary>
+            Get A GameObject from a bundle - Instantiates
+            </summary>
+            <param name="name">The name of the bundle</param>
+            <param name="instantiate">Instantiate - Normally True</param>
+            <returns>A <see cref="T:UnityEngine.GameObject"/></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.RegisterTexture(System.String,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Register a Texture
+            </summary>
+            <param name="fileName"></param>
+            <param name="fileBaseDir"></param>
+            <param name="width">Width of the texture</param>
+            <param name="height">Height of the texture</param>
+            <param name="customName">Custom name to be accessed by</param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.GetTexture(System.String)">
+            <summary>
+            Grab a Texture from your registered textures
+            </summary>
+            <param name="name"></param>
+            <returns>an Image</returns>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.ModUtilities.Enemies">
+            <summary>
+            All Enemies
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.ModUtilities.Player">
+            <summary>
+            Desktop Player
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.ModUtilities.VRPlayer">
+            <summary>
+            VR Player
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.ModUtilities.LocalActivated">
+            <summary>
+            Are two players playing (locally)?
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.BeforeEnemyDie">
+            <summary>
+            Invoked right before an Enemy Dies
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnEnemyDie">
+            <summary>
+            Invoked when an Enemy Dies
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnCivilianDie">
+            <summary>
+            Invoked when a Civ Dies
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.BeforeCivilianDie">
+            <summary>
+            Invoked right before a Civ Dies
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnCivilianDamaged">
+            <summary>
+            Right when a civilian gets damaged
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnEnemyDamaged">
+            <summary>
+            Right when an Enemy gets damaged
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.BeforeEnemySpawn">
+            <summary>
+            Right before an enemy spawns into the game
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnEnemySpawn">
+            <summary>
+            Right after an enemy spawns into the game
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.BeforeCivilianSpawn">
+            <summary>
+            Right before a civilian spawns into the game
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnCivilianSpawn">
+            <summary>
+            Right after a civilian spawns into the game
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnFPSPlayerSpawn">
+            <summary>
+            Right when a FPS Player Spawns
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnVRPlayerSpawn">
+            <summary>
+            Right when a VR player is added to the game
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnVRPlayerDie">
+            <summary>
+            Right when a VR Player dies
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnFpsPlayerDie">
+            <summary>
+            When a Desktop Player Dies
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnFpsPlayerDamage">
+            <summary>
+            Right When a Desktop Player is damaged
+            </summary>
+        </member>
+        <member name="E:FastandLow.Modding.Utilities.ModUtilities.OnVRPlayerDamage">
+            <summary>
+            Right when a VR player is damaged
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.CallForArrest(UnityEngine.Transform,System.Single)">
+            <summary>
+            Call For An Arrest of Enemies/Civilians
+            </summary>
+            <param name="caller">Where to call from</param>
+            <param name="range">The range for how long the arrest is called, 30 being the base</param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.ModUtilities.Kill(civilianHp)">
+            <summary>
+            Kills the selected Civilians
+            </summary>
+            <param name="civilian">The civilian to kill</param>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.Method">
+            <summary>
+            A method
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.Name">
+            <summary>
+            The name of the method
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.ReturnType">
+            <summary>
+            The return type
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.Parameters">
+            <summary>
+            Param Types
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.HasReturnType">
+            <summary>
+            Does this have return types?
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.HasParameters">
+            <summary>
+            Does this have parameters
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Method.IsReturnType``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="match"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.MethodBase">
+            <summary>
+            The methodbase
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Method.Instance">
+            <summary>
+            an Instance
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Method.SetInfo(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="instance"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Method.CallMethod(System.Object[])">
+            <summary>
+            Invoke the method
+            </summary>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.Variable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.Instance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.ThisFieldInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.ThisPropertyInfo">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.IsProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.IsField">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.Variable.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Variable.GetValue``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Variable.SetValue``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="val"></param>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.Variable.SetInfo(System.Reflection.FieldInfo,System.Reflection.PropertyInfo,System.Boolean,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="pInfo"></param>
+            <param name="isProp"></param>
+            <param name="instance"></param>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.UtilityHandler">
+            <summary>
+            Handles Extensions
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.UtilityHandler.GetMethod(System.Object,System.String,System.Type[])">
+            <summary>
+            Returns a Method
+            </summary>
+            <param name="obj"></param>
+            <param name="methodName"></param>
+            <param name="types"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.UtilityHandler.GetVariable(System.Object,System.String)">
+            <summary>
+            Returns a Field/Property
+            </summary>
+            <param name="obj"></param>
+            <param name="objName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FastandLow.Modding.Utilities.UtilityHandler.AllFlags">
+            <summary>
+            All BindingFlags => (<see cref="T:System.Reflection.BindingFlags"/>)(-1)
+            </summary>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.VRInput">
+            <summary>
+            Detection for Input from a VR system
+            </summary>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.VRInput.GetButtonDown(FastandLow.Modding.Utilities.VRInput.Input)">
+            <summary>
+            Happens when a VR Button is Pressed Down Once
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.VRInput.GetButtonHeld(FastandLow.Modding.Utilities.VRInput.Input)">
+            <summary>
+            Happens after a button is pressed down and Held for a period of time
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastandLow.Modding.Utilities.VRInput.GetButtonUp(FastandLow.Modding.Utilities.VRInput.Input)">
+            <summary>
+            Happens when a VR Button is released from either being Held and or pushed Down
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FastandLow.Modding.Utilities.VRInput.Input">
+            <summary>
+            Input for the several methods in <see cref="T:FastandLow.Modding.Utilities.VRInput"/>
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.A">
+            <summary>
+            Button A - 10
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.B">
+            <summary>
+            Button B - 20
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.X">
+            <summary>
+            Button X - 30
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.Y">
+            <summary>
+            Button Y - 40
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.LeftTrigger">
+            <summary>
+            Left Trigger - 1
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.RightTrigger">
+            <summary>
+            Right Trigger - 2
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.LeftGrip">
+            <summary>
+            Left Grip - 3
+            </summary>
+        </member>
+        <member name="F:FastandLow.Modding.Utilities.VRInput.Input.RightGrip">
+            <summary>
+            Right Grip - 4
+            </summary>
+        </member>
+    </members>
+</doc>
