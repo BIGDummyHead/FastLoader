@@ -86,9 +86,9 @@ namespace FastandLow.Modding.Utilities
         /// Invoke the method
         /// </summary>
         /// <param name="parameters"></param>
-        public void CallMethod(params object[] parameters)
+        public object CallMethod(params object[] parameters)
         {
-            MethodBase.Invoke(this.Instance, parameters);
+            return MethodBase.Invoke(this.Instance, parameters);
         }
     }
 }

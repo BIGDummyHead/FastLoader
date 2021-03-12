@@ -36,7 +36,7 @@ namespace FastandLow.Modding.Utilities
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="fileBaseDir">Base Directory</param>
-        /// <param name="customName">A Custom Name To Accessed Under</param>
+        /// <param name="customName">A Custom Name To Be Accessed Under</param>
         public static void RegisterAudio(string fileName, string fileBaseDir, string customName = null)
         {
             string audioPath = Path.Combine(fileBaseDir, fileName);
