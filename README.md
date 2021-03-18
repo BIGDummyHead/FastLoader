@@ -17,6 +17,9 @@ This is the injected code into the game, this code was manually put in by the de
 ## Copy Right Info
 There will be no copyright info, as I see there is no reason to do so. You would have no use for using this on the game that it is meant for so feel free to take code from it and use it wherever you like. I hope this helps some people get started in making their own loader!
 
+## Safety / Legality
+I and the developer of Fast and Low are not responsible for any Mod(s) that may contain Dynamic Link Libraries that execute malicous code. You download Mod(s) at your own risk. Also, beware of copy versions of the project that do not have the source code uploaded, I am not responsible for these versions as they are not made by me and not distributed by me. On another not please be careful of what you download, since this project is open-source you can review the code inside the solution and compile it yourself if you do not feel safe!
+
 ## Used Libraries
 * [pardeike/Harmony](https://github.com/pardeike/Harmony) - [Harmony Docs](https://harmony.pardeike.net/)
 * [BIGDummyHead/DummyReflection](https://github.com/BIGDummyHead/DummyReflection)
